@@ -17,4 +17,478 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  background-color: var(--bg-color, #fff);
+  color: var(--accent-color, #000);
+  background-image: var(--bg-img);
+  background-attachment: fixed;
+  background-position: top center;
+  background-size: cover;
+  margin: auto;
+}
+
+.button {
+  appearance: none;
+  background-color: var(--bg-color);
+  border: transparent;
+  font-family: var(--accent-font, "PressStart2P"), monospace;
+  font-size: 0.875rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.button:focus {
+  appearance: none;
+  outline: none;
+}
+
+.content {
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+  inline-size: clamp(375px, 48.6vw, 700px);
+  background-color: var(--bg-color);
+  font-size: 1.125rem;
+  font-family: var(--main-font, "Inter-Variable"), sans-serif;
+}
+
+.header {
+  margin-block: 6.25rem;
+  padding-block-start: 8.5rem;
+  align-items: center;
+  font-family: var(--accent-font, "PressStart2P"), monospace;
+  text-transform: uppercase;
+}
+
+.header__title {
+  margin-block-end: 1.25rem;
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+}
+
+.header__subtitle {
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+}
+
+.header__theme-menu {
+  margin-block: 1.42rem 1.57rem;
+}
+
+.theme-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.58rem;
+  align-items: flex-start;
+}
+
+.theme-menu__item {
+  position: relative;
+  transform: translateX(0.56rem);
+}
+
+.theme-menu__button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 2px;
+  margin-top: 1px;
+  opacity: 0.6;
+  background-color: var(--accent-color);
+  transition: width 0.3s;
+}
+
+.theme-menu__button {
+  width: fit-content;
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  text-transform: uppercase;
+}
+
+.theme-menu__button:focus {
+  appearance: none;
+  outline: none;
+  opacity: 0.6;
+}
+
+.theme-menu__button:focus-visible:after {
+  appearance: none;
+  outline: none;
+  width: 100%;
+}
+
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.theme-menu__button:disabled::before {
+  content: "▶";
+  position: absolute;
+  inset-inline-start: -1.24rem;
+  animation: arrow 1s infinite ease-in-out;
+}
+
+@keyframes arrow {
+
+  from {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(0.25rem);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.card {
+  margin-block-end: 3rem;
+}
+
+.card__title {
+  font-variation-settings: "wght" var(--title-wght, 700);
+  border-block-end: var(--border);
+  font-size: 1.125rem;
+  padding: 0.26rem 1.25rem 0.29rem 0.625rem;
+}
+
+.card__wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.card__label {
+  position: absolute;
+  z-index: 2;
+  inset-inline-end: 0;
+  margin: 1.55rem;
+  font-family: var(--accent-font, "PressStart2P"), monospace;
+  font-size: 0.88rem;
+  text-shadow:
+    -1px 0 var(--bg-color),
+    0 1px var(--bg-color),
+    1px 0 var(--bg-color),
+    0 -1px var(--bg-color);
+  mix-blend-mode: hard-light;
+  opacity: 0.5;
+}
+
+@supports ((text-stroke: 1px #000) or (-webkit-text-stroke: 1px #000)) {
+
+  .card__label {
+    -webkit-text-stroke: 1px var(--bg-color);
+    text-stroke: 1px var(--bg-color);
+    text-shadow: none;
+  }
+}
+
+.card__image {
+  display: block;
+  inline-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cards__list-item:nth-child(1) .card__image {
+  filter: contrast(1.2);
+}
+
+.cards__list-item:nth-child(2) .card__image {
+  filter: sepia(0.23) brightness(0.7) saturate(2);
+}
+
+.cards__list-item:nth-child(3) .card__image {
+  filter: sepia(0.3);
+  animation: gamma 2s infinite linear;
+}
+
+@keyframes gamma {
+
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(180deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.cards__list-item:nth-child(4) .card__image {
+  filter: hue-rotate(25deg) saturate(1.4);
+}
+
+.cards__list-item:nth-child(5) .card__image {
+  filter: hue-rotate(-15deg);
+}
+
+.cards__list-item:nth-child(6) .card__image {
+  filter: saturate(1.6);
+}
+
+.cards__list-item:nth-child(7) .card__image {
+  filter: brightness(1.1) hue-rotate(-15deg) sepia(0.3);
+}
+
+.cards__list-item:nth-child(8) .card__image {
+  filter: brightness(0.95) contrast(1.1);
+  transform: rotateY(180deg);
+}
+
+.card__text {
+  border-block-start: var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.688rem;
+  padding: 1.55rem;
+  line-height: 1.17;
+  font-variation-settings: "wght" var(--text-wght, 400);
+}
+
+.card__buttons {
+  margin: 0 1.55rem 1.54rem;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.card__icon-button {
+  border: 2px solid transparent;
+}
+
+.card__icon-button:focus-visible {
+  border: var(--border);
+  transition: border 0.3s;
+}
+
+.contour {
+  fill: var(--accent-color);
+  transition: fill 0.1s linear;
+}
+
+.core {
+  fill: transparent;
+  transition: fill 0.3s 0.03s;
+}
+
+.main-body {
+  fill: transparent;
+  transition: fill 0.3s;
+}
+
+.sparks {
+  opacity: 0;
+}
+
+.card__icon-button:hover .core {
+  fill: var(--accent-color);
+  transition: fill 0.3s;
+}
+
+.card__icon-button:active .core {
+  fill: var(--heart-color);
+  transition: fill 0.3s;
+}
+
+.card__icon-button:hover .main-body {
+  fill: var(--accent-color);
+  transition: fill 0.3s 0.05s;
+}
+
+.card__icon-button:active .main-body {
+  fill: var(--heart-color);
+  transition: fill 0.3s 0.05s;
+}
+
+.like-icon.is-liked .core {
+  fill: var(--heart-color);
+  transition: fill 0.3s;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--heart-color);
+  transition: fill 0.3s 0.06s;
+}
+
+.like-icon.is-liked .contour {
+  fill: var(--heart-color);
+  transition: fill 0.3s 0.06s;
+}
+
+.like-icon.is-liked .heart {
+  animation: liked 0.3s 0.1s ease-in;
+  transform-origin: center;
+}
+
+@keyframes liked {
+
+  from {
+    scale: 1;
+  }
+
+  50% {
+    scale: 1.5;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+.like-icon.is-liked .sparks {
+  animation: sparking 0.3s 0.3s ease-in;
+}
+
+@keyframes sparking {
+
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.button__text {
+  position: relative;
+  padding-block: 0.66rem;
+  min-width: 8.2rem;
+  border: var(--border);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--accent-color);
+  transition: color 0.5s 0.5s;
+}
+
+.button__text::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.save-button {
+  display: block;
+  margin-block: 3.07rem 6.2rem;
+  margin-inline: auto;
+}
+
+.save-button .button__text {
+  padding: 0.9rem 1.3rem;
+}
+
+.button:hover .button__text {
+  color: var(--bg-color);
+}
+
+.button:hover .button__text::before {
+  transform: scaleX(1);
+}
+
+.card__like-button:focus-visible,
+.save-button:focus-visible {
+  box-shadow: 2px 2px 0 0 var(--accent-color);
+  transition: box-shadow 0.3s ease;
+}
+
+.floppy {
+  display: inline-block;
+  width: 1.313rem;
+  height: 1.313rem;
+}
+
+.dialog[open] {
+  display: grid;
+  grid-template-columns: 2.44rem 14.625rem;
+  grid-auto-rows: auto;
+  align-items: center;
+  margin: auto;
+  padding: 1.825rem;
+  gap: 1.8rem;
+  border: var(--border);
+  color: var(--accent-color);
+  background-color: var(--bg-color);
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+.dialog .floppy {
+  width: 2.44rem;
+  height: 2.44rem;
+}
+
+.dialog__text {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  font-family: var(--accent-font, "PressStart2P"), monospace;
+  text-transform: uppercase;
+}
+
+.dialog__button {
+  grid-column: span 2;
+}
+
+@media (width < 376px) {
+
+  .content {
+    inline-size: 100%;
+  }
+
+  .header {
+    padding-block-start: 7.5rem;
+    font-variation-settings: "wght" 400;
+  }
+
+  .card__title {
+    padding: 0.219rem 0.625rem 0.344rem;
+  }
+
+  .card__label {
+    margin: 1.45em 0.68rem;
+  }
+
+  .button__text {
+    flex-direction: column;
+  }
+
+  .floppy {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .dialog[open] {
+    grid-template-columns: 2.44rem 1fr;
+  }
 }
