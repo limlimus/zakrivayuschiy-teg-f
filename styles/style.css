@@ -57,6 +57,7 @@ button {
   border: var(--border);
   z-index: 1;
   color: var(--button-color);
+  transition: box-shadow 0.3s ease;
 }
 
 .button:has(.button__text)::before {
@@ -71,8 +72,8 @@ button {
   transform: scaleX(0);
   transform-origin: 0;
   transition:
-    transform 0.5s ease-in-out,
-    box-shadow 0.3s ease;
+    transform 0.5s ease-in-out;
+
 }
 
 .button:has(.button__text):hover::before {
@@ -158,7 +159,8 @@ button {
   scale: 0;
   height: 2px;
   width: 100%;
-  inset-block-end: -1px;
+  inset-block-end: -2px;
+  inset-inline-start: 0;
   opacity: 0.6;
   background-color: var(--accent-color);
   transform-origin: 0;
@@ -269,9 +271,12 @@ button {
   gap: 0.25rem;
 }
 
+.card__icon-button {
+  transition: border 0.3s;
+}
+
 .card__icon-button:focus-visible {
   border: var(--border);
-  transition: border 0.3s;
 }
 
 .sparks {
@@ -330,10 +335,12 @@ button {
 
 .dialog__button {
   grid-column: span 2;
+  text-transform: uppercase;
+  padding-block: 0.78rem;
 }
 
 @media (width < 376px) {
-  
+
   .content {
     inline-size: 100%;
   }
